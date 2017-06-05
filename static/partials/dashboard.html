@@ -1,0 +1,43 @@
+<div ng-controller="dashboardController">
+    <div class="banner purple">
+        <img class="bannerLogo" src="/static/img/logo-white.png">
+        <div class="logout" ng-click="logout()">LOG OUT</div>
+    </div>
+    <div class="dashboardTile" ng-hide="skipped">
+        <div ng-show="pickMood">
+            <div class="tileTitle">
+                welcome, {{user}}!
+                <br>
+                <br>
+                how are you feeling today?
+                <br>
+                <br>
+            </div>
+            <table class="emojiTable">
+                <tr>
+                    <td class="angry" ng-click="chooseMood(1)">
+                        <img class="emoji" src="/static/img/angry.png">
+                    </td>
+                    <td class="confident" ng-click="chooseMood(2)">
+                        <img class="emoji" src="/static/img/confident.png">
+                    </td>
+                    <td class="average" ng-click="chooseMood(3)">
+                        <img class="emoji" src="/static/img/average.png">
+                    </td>
+                    <td class="happy" ng-click="chooseMood(4)">
+                        <img class="emoji" src="/static/img/happy.png">
+                    </td>
+                    <td class="sad" ng-click="chooseMood(5)">
+                        <img class="emoji" src="/static/img/sad.png">
+                    </td>
+                </tr>
+            </table>
+            <div class="journalButton purple" ng-click="skipped=true">SKIP</div>
+        </div>
+        <div ng-show="writeDetails">
+            <div class="tileTitle">feel free to write about it.</div>
+            <input type="text" ng-model="journal.details" class="journalEntry">
+            <div class="journalButton purple" ng-click="saveMood()">SAVE ENTRY</div>
+        </div>
+    </div>
+</div>

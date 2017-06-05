@@ -1,0 +1,13 @@
+<div class="background sky" ng-controller="loginController">
+	<img class="logo" src="/static/img/logo-white.png">
+	<div class="loginBox">
+		<div class="loginBoxLabel">username</div>
+		<input class="loginBoxInput" type="text" ng-model="user.username">
+		<div class="loginBoxSpacer"></div>
+		<div class="loginBoxLabel">password</div>
+		<input class="loginBoxInput" type="password" ng-model="user.password">
+		<div class="loginButton water" ng-click="verify()">LOG IN</div>
+		<div class="loginButton mint" ng-click="signup()">SIGN UP</div>
+		<div class="loginError">{{error}}</div>
+	</div>
+</div>

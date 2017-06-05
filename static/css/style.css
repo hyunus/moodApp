@@ -1,0 +1,231 @@
+
+/**
+* mood styles 
+* @author Haneya Yunus
+* @version 0.1
+*/
+
+/*
+font-family: 'Roboto', sans-serif;
+font-family: 'Comfortaa', cursive;
+ */
+
+.background {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+}
+
+.sky {
+	background-color: #74B8FF;
+	color: #ffffff;
+}
+
+.water {
+	background-color: #74B8FF;
+	color: #FFFFFF;
+}
+
+.mint {
+	background-color: #69FFCE;
+	color: #FFFFFF;
+}
+
+.purple {
+    background-color: #877EFF;
+    color: #FFFFFF;
+}
+
+.logo {
+	position: absolute;
+	width: 170px;
+	top: 40px;
+	right: calc(50% - 85px);
+}
+
+.loginBox {
+	position: relative;
+	height: 400px;
+	width: 400px;
+	top: calc(50% - 200px);
+	left: calc(50% - 200px);
+	padding: 50px 20px 20px 20px;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+	z-index: 5;
+}
+
+.loginBoxInput {
+	position: relative;
+	height: 40px;
+	width: 100%;
+	border: solid 1px #9b9b9b;
+	border-radius: 5px;
+	font-size: 30px;
+	color: #218CFC;
+}
+
+.loginBoxLabel {
+	position: relative;
+	margin-bottom: 5px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	color: #74B8FF;
+}
+
+.loginBoxSpacer {
+	position: relative;
+	height: 40px;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+.loginButton {
+	position: relative;
+	height: 50px;
+	width: 200px;
+	left: calc(50% - 100px);
+	line-height: 50px;
+	margin-top: 40px;
+	border-radius: 5px;
+	text-align: center;
+	font-family: 'Comfortaa', cursive;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.loginError {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: red;
+}
+
+.banner {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100px;
+	border: solid 2px #FFFFFF
+}
+
+.bannerLogo {
+    position: absolute;
+    width: 170px;
+    top: calc(50% - 32px);
+    right: calc(50% - 85px);
+}
+
+.logout {
+    display: inline-block;
+    position: absolute;
+    line-height: 100px;
+    right: 41px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.logout:hover {
+    text-decoration: underline;
+}
+
+.dashboardTile {
+	position: relative;
+	top: 100px;
+	height: 500px;
+	width: calc(100% - 30px);
+	margin: 15px 15px 15px 0;
+	padding: 15px;
+	border: solid 1px #74B8FF
+}
+
+.tileTitle {
+	width: 100%;
+	margin: 15px 0 15px 0;
+	text-align: center;
+	line-height: 0.75;
+	font-family: 'Comfortaa', cursive;
+	font-size: 40px;
+	color: #218CFC;
+}
+
+.emojiTable {
+	width: 100%;
+	height: 100px;
+}
+
+.emojiTable tr {
+	width: 100%;
+	height: 100px;
+	border: solid 3px #FFFFFF;
+}
+
+.emojiTable td {
+	width: 20%;
+	height: 175px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.emojiTable td:hover {
+	border: solid 5px #FFFFFF;
+}
+
+.angry {
+	background-color: red;
+}
+
+.confident {
+	background-color: orange;
+}
+
+.average {
+	background-color: yellow;
+}
+
+.happy {
+	background-color: green;
+}
+
+.sad {
+	background-color: royalblue;
+}
+
+.emoji {
+	height: 100px;
+	width: 100px;
+}
+
+.journalEntry {
+	width: calc(100% - 30px);
+	height: 350px;
+	padding: 10px 10px 10px 10px;
+	border: solid 1px #9b9b9b;
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	color: rgba(0, 0, 0, 0.8);
+	background-color: #FFFFFF;
+	border-radius: 5px;
+}
+
+.journalButton {
+	position: relative;
+	float: right;
+	bottom: 20px;
+	height: 50px;
+	width: 200px;
+	line-height: 50px;
+	margin-top: 40px;
+	border-radius: 5px;
+	text-align: center;
+	font-family: 'Comfortaa', cursive;
+	font-size: 20px;
+	cursor: pointer;
+}
