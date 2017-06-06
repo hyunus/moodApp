@@ -41,12 +41,24 @@
         </div>
     </div>
     <div class="dashboardTile" ng-show="skipped">
-        <div class="entryTile" ng-repeat="entry in journal.data">
-            <img class="emoji" src="/static/img/angry.png" ng-show="entry[1]==1">
-            <img class="emoji" src="/static/img/confident.png" ng-show="entry[1]==2">
-            <img class="emoji" src="/static/img/average.png" ng-show="entry[1]==3">
-            <img class="emoji" src="/static/img/happy.png" ng-show="entry[1]==4">
-            <img class="emoji" src="/static/img/sad.png" ng-show="entry[1]==5">
+        <div class="entryTile" ng-repeat="entry in journal.data track by $index" ng-click="openDetails($index)">
+            <img class="emoji entryEmoji" src="/static/img/angry.png" ng-show="entry[1]==1">
+            <img class="emoji entryEmoji" src="/static/img/confident.png" ng-show="entry[1]==2">
+            <img class="emoji entryEmoji" src="/static/img/average.png" ng-show="entry[1]==3">
+            <img class="emoji entryEmoji" src="/static/img/happy.png" ng-show="entry[1]==4">
+            <img class="emoji entryEmoji" src="/static/img/sad.png" ng-show="entry[1]==5">
+            <div class="moodText angry" ng-show="entry[1]==1">angry</div>
+            <div class="moodText confident" ng-show="entry[1]==2">confident</div>
+            <div class="moodText average" ng-show="entry[1]==3">average</div>
+            <div class="moodText happy" ng-show="entry[1]==4">happy</div>
+            <div class="moodText sad" ng-show="entry[1]==5">sad</div>
+            <div class="moodText smaller white">{{entry[0]}}</div>
+        </div>
+    </div>
+    <div class="greyBox" ng-show="showDetails">
+        <div class="popup" ng-show="showDetails">
+            {{details}}
+            <div class="journalButton mint" ng-click="closeDetails()">CLOSE</div>
         </div>
     </div>
 </div>

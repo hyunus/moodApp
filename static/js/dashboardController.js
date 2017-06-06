@@ -16,6 +16,7 @@ moodApp.controller('dashboardController', ['$scope', '$http', 'apiFactory', func
     $scope.user = localStorage.getItem('user');
     $scope.pickMood = true;
     $scope.writeDetails = false;
+    $scope.details = '';
 
     apiFactory.getJournal(id).then(function(data) {
         if(data) {
@@ -49,7 +50,7 @@ moodApp.controller('dashboardController', ['$scope', '$http', 'apiFactory', func
 
     $scope.saveMood = function() {
         var now = new Date();
-        $scope.journalEntry.timestamp = now.getTime();
+        $scope.journalEntry.timestamp = now.toDateString();
         $http({
             method: 'POST',
             url: '/newentry',
@@ -60,10 +61,25 @@ moodApp.controller('dashboardController', ['$scope', '$http', 'apiFactory', func
             data: $scope.journalEntry
         }).then(function(success) {
             console.log(success);
+            apiFactory.getJournal(id).then(function(data) {
+                $scope.journal.data = data;
+            });
         }, function(error) {
             console.log(error);
         });
         $scope.skipped = true; //remove entry tile
+    };
+
+    $scope.openDetails = function(index) {
+        console.log(index);
+        console.log($scope.journal);
+        $scope.details = $scope.journal.data[index][2];
+        $scope.showDetails = true;
+    };
+
+    $scope.closeDetails = function() {
+        $scope.details = '';
+        $scope.showDetails = false;
     };
 
     $scope.logout = function() {
