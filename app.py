@@ -53,6 +53,20 @@ def Create():
         cursor.close()
         return jsonify(result), 400
 
+@app.route('/getjournal', methods=['GET'])
+def getJournal():
+    data =  request.args.get('id')
+    cursor = conn.cursor()
+    query = ("SELECT * from moods_" + data)
+    cursor.execute(query)
+    conn.commit()
+    result = cursor.fetchall()
+    cursor.close()
+    if result is None:
+        return jsonify(result), 404
+    else:
+        return jsonify(result), 200
+
 @app.route('/newjournal', methods=['POST'])
 def Journal():
     data = request.json

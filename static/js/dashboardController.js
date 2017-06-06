@@ -1,7 +1,7 @@
 /**
  * Created by Haneya Yunus
  */
-moodApp.controller('dashboardController', ['$scope', '$http', '$q', function($scope, $http, $q) {
+moodApp.controller('dashboardController', ['$scope', '$http', 'apiFactory', function($scope, $http, apiFactory) {
     var id = localStorage.getItem('id');
 
     if(!id) {
@@ -9,30 +9,21 @@ moodApp.controller('dashboardController', ['$scope', '$http', '$q', function($sc
     }
 
     $scope.entry = false;
-    $scope.journal = {
+    $scope.journalEntry = {
         id: Number(id)
     };
+    $scope.journal = {};
     $scope.user = localStorage.getItem('user');
     $scope.pickMood = true;
     $scope.writeDetails = false;
 
-    var checkLastEntry = function() {
-        $http({
-            method: 'POST',
-            url: '/lastentry',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            data: id
-        }).then(function(success) {
-            console.log(success);
-        }, function(error) {
-            if(error.status === 404 || error.status === 500) { //no associated journal for this user
-                createJournal();
-            }
-        });
-    };
+    apiFactory.getJournal(id).then(function(data) {
+        if(data) {
+            $scope.journal.data = data;
+        } else {
+            createJournal();
+        }
+    });
 
     var createJournal = function() {
         $http({
@@ -51,14 +42,14 @@ moodApp.controller('dashboardController', ['$scope', '$http', '$q', function($sc
     };
 
     $scope.chooseMood = function(mood) {
-        $scope.journal.mood = mood;
+        $scope.journalEntry.mood = mood;
         $scope.pickMood = false;
         $scope.writeDetails = true;
     };
 
     $scope.saveMood = function() {
         var now = new Date();
-        $scope.journal.timestamp = now.getTime();
+        $scope.journalEntry.timestamp = now.getTime();
         $http({
             method: 'POST',
             url: '/newentry',
@@ -66,7 +57,7 @@ moodApp.controller('dashboardController', ['$scope', '$http', '$q', function($sc
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            data: $scope.journal
+            data: $scope.journalEntry
         }).then(function(success) {
             console.log(success);
         }, function(error) {
@@ -79,5 +70,5 @@ moodApp.controller('dashboardController', ['$scope', '$http', '$q', function($sc
         localStorage.setItem('id', null);
         localStorage.setItem('user', null);
         window.location = '/#/login';
-    }
+    };
 }]);

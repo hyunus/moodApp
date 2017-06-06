@@ -36,8 +36,17 @@
         </div>
         <div ng-show="writeDetails">
             <div class="tileTitle">feel free to write about it.</div>
-            <input type="text" ng-model="journal.details" class="journalEntry">
+            <input type="text" ng-model="journalEntry.details" class="journalEntry">
             <div class="journalButton purple" ng-click="saveMood()">SAVE ENTRY</div>
+        </div>
+    </div>
+    <div class="dashboardTile" ng-show="skipped">
+        <div class="entryTile" ng-repeat="entry in journal.data">
+            <img class="emoji" src="/static/img/angry.png" ng-show="entry[1]==1">
+            <img class="emoji" src="/static/img/confident.png" ng-show="entry[1]==2">
+            <img class="emoji" src="/static/img/average.png" ng-show="entry[1]==3">
+            <img class="emoji" src="/static/img/happy.png" ng-show="entry[1]==4">
+            <img class="emoji" src="/static/img/sad.png" ng-show="entry[1]==5">
         </div>
     </div>
 </div>
