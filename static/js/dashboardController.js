@@ -21,10 +21,27 @@ moodApp.controller('dashboardController', ['$scope', '$http', 'apiFactory', func
     apiFactory.getJournal(id).then(function(data) {
         if(data) {
             $scope.journal.data = data;
-        } else {
-            createJournal();
         }
     });
+
+    var checkLastEntry =  function() {
+        $http({
+            method: 'POST',
+            url: '/lastentry',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            data: id
+        }).then(function(success) {
+            console.log(success);
+        }, function(error) {
+            console.log(error);
+            createJournal();
+        });
+    };
+
+    checkLastEntry();
 
     var createJournal = function() {
         $http({
