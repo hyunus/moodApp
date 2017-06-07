@@ -53,6 +53,7 @@ moodApp.controller('loginController', ['$scope', '$http', function($scope, $http
             }
         }).then(function(success) {
             console.log(success);
+            $scope.error = 'Great! Now click \'Log In\' to get started.';
         }, function(error) {
             if(error.status === 400) {
                 $scope.error = "User already exists!";
