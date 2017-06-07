@@ -17,6 +17,7 @@ moodApp.controller('dashboardController', ['$scope', '$http', 'apiFactory', func
     $scope.pickMood = true;
     $scope.writeDetails = false;
     $scope.details = '';
+    $scope.activeEntry = {};
 
     apiFactory.getJournal(id).then(function(data) {
         if(data) {
@@ -87,16 +88,40 @@ moodApp.controller('dashboardController', ['$scope', '$http', 'apiFactory', func
         $scope.skipped = true; //remove entry tile
     };
 
-    $scope.openDetails = function(index) {
-        console.log(index);
-        console.log($scope.journal);
+    $scope.openDetails = function(index, entry) {
+        $scope.activeEntry = entry;
         $scope.details = $scope.journal.data[index][2];
         $scope.showDetails = true;
     };
 
     $scope.closeDetails = function() {
         $scope.details = '';
+        $scope.activeEntry = '';
         $scope.showDetails = false;
+    };
+
+    $scope.deleteEntry = function() {
+        $http({
+            method: 'POST',
+            url: '/deleteentry',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            data: {
+                id: Number(id),
+                timestamp: $scope.activeEntry[0],
+                details: $scope.activeEntry[2]
+            }
+        }).then(function(success) {
+            console.log(success);
+            apiFactory.getJournal(id).then(function(data) {
+                $scope.journal.data = data;
+                $scope.closeDetails();
+            });
+        }, function(error) {
+            console.log(error);
+        })
     };
 
     $scope.logout = function() {

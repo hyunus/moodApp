@@ -233,6 +233,11 @@ font-family: 'Comfortaa', cursive;
 	cursor: pointer;
 }
 
+.left {
+	width: 100px;
+	float: left;
+}
+
 .entryTile {
 	height: 150px;
 	width: 150px;

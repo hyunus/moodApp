@@ -105,5 +105,16 @@ def lastEntry():
     cursor.close()
     return jsonify(result), 200
 
+@app.route('/deleteentry', methods=['POST'])
+def deleteEntry():
+    data = request.json
+    cursor = conn.cursor()
+    query = ("DELETE FROM moods_%s WHERE timestamp=%s and details=%s")
+    values = (data['id'], data['timestamp'], data['details'])
+    cursor.execute(query, values)
+    result = cursor.fetchone()
+    cursor.close()
+    return jsonify(result), 200
+
 if __name__ == "__main__":
     app.run()
